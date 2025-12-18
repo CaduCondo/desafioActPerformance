@@ -37,10 +37,5 @@ bash
 jmeter -n -t scripts/desafioActPerformance.jmx -l results.jtl -e -o reports/dashboard/
 
 
-## 📈 Relatório de Execução e Análise
-Status Final: [APROVADO / SATISFATÓRIO]
-Sumário de Resultados (Teste de Carga)
-|Métrica|         Valor Obtido|            Status|
-|Throughput|      [Ex: 252.8] req/sec|     ✅ OK|
-|90th Percentile| [Ex: 1.4s]|              ✅ OK|
-|Taxa de Erro|    [Ex: 0.00%]|             ✅ OK|
+## 📊 Relatório Online
+Veja os resultados detalhados aqui: [Clique para abrir o Dashboard](https://caducondo.github.io/desafioActPerformance/)
