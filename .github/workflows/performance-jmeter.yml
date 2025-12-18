@@ -35,6 +35,7 @@ jobs:
       # ATENÇÃO: Ajuste o caminho do seu arquivo .jmx abaixo se necessário
       - name: Rodar Teste de Performance
         run: |
+          mkdir -p reports/dashboard  # Cria a pasta caso ela não exista
           jmeter -n -t scripts/desafioActPerformance.jmx -l results.jtl -e -o reports/dashboard/
 
       # 5. Salva o relatório gerado como um artefato do GitHub
