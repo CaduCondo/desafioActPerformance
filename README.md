@@ -1,3 +1,6 @@
+![JMeter Test](https://img.shields.io/badge/JMeter-5.6.3-orange)
+![Status](https://github.com/CaduCondo/desafioActPerformance/actions/workflows/performance-jmeter.yml/badge.svg)
+
 # 🚀 Desafio de Performance: BlazeDemo (JMeter)
 
 Este repositório contém a solução do desafio técnico de performance, simulando a compra de passagens aéreas no site [BlazeDemo](https://www.blazedemo.com). O objetivo é validar a escalabilidade e o tempo de resposta do sistema sob carga.
