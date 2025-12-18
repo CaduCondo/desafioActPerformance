@@ -1,0 +1,47 @@
+name: JMeter Performance CI
+
+# Define quando o teste será executado
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  performance-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixa o código do seu repositório para a máquina do GitHub
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # 2. Instala o Java (necessário para rodar o JMeter)
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # 3. Baixa e descompacta o JMeter
+      - name: Instalar Apache JMeter
+        run: |
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+          tar -xzf apache-jmeter-5.6.3.tgz
+          # Adiciona o binário do JMeter ao PATH do sistema para usarmos o comando 'jmeter'
+          echo "$(pwd)/apache-jmeter-5.6.3/bin" >> $GITHUB_PATH
+
+      # 4. Executa o teste em modo Non-GUI (sem interface)
+      # ATENÇÃO: Ajuste o caminho do seu arquivo .jmx abaixo se necessário
+      - name: Rodar Teste de Performance
+        run: |
+          jmeter -n -t scripts/desafioActPerformance.jmx -l results.jtl -e -o reports/dashboard/
+
+      # 5. Salva o relatório gerado como um artefato do GitHub
+      # Conforme sua regra de 17/12/2025, aqui geramos a evidência final
+      - name: Upload do Relatório de Performance
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: jmeter-report
+          path: reports/dashboard/
